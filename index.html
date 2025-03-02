@@ -6,10 +6,12 @@
     <title>Ethan Tennison | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/EthanTennison.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
+            <div class="menu-toggle">&#9776;</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="projects.html">Projects</a></li>
@@ -17,23 +19,25 @@
             </ul>
         </nav>
     </header>
-   
+
+    <div class="name-and-image-header">
+      <img src="images/profile.jpg" alt="Profile Picture" class="profile-img">
+      <h1><strong>Ethan Tennison</strong></h1>
+    </div>
+
     <section id="about">
         <div class="main-container">
-            <img src="images/profile.jpg" alt="Profile Picture" class="profile-img">
             <div class="about-content">
                 <div class="content-frame-body">
-                    <h2 id="typewriter" class="typewriter" data-text="Welcome to My Portfolio!"></h2>
+                    <h2 class="typewriter" data-text="Welcome to My Portfolio!"></h2>
                     <p>I'm a Computer Science student at Texas Tech University passionate about coding and technology.</p>
                     <p>I enjoy building interactive and innovative software experiences, including web development, game design, and system programming.</p>
                 </div>
             </div>
         </div>
     </section>
-    
 
     <script src="script.js"></script>
     <canvas id="particle-canvas"></canvas>
 </body>
 </html>
-
