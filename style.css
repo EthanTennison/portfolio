@@ -81,7 +81,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
 }
 
@@ -93,11 +93,13 @@ nav a:hover {
 .title-container {
     display: flex;
     justify-content: center;
+    align-items: center; 
     margin-top: 50px;
-    width: 100%;
+    width: 50%;
 }
 
-.content-frame, .content-frame-body {
+
+.content-frame {
     display: flex;
     flex-direction: column;
     justify-content: center;
