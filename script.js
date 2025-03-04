@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     function typeWriterEffect(element, text, speed = 50) {
         let i = 0;
-        let originalText = text;
+        const originalText = text;
 
         function type() {
             if (i < text.length) {
@@ -28,27 +28,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    let typewriterElements = document.querySelectorAll(".typewriter");
-    typewriterElements.forEach(element => {
+    document.querySelectorAll(".typewriter").forEach(element => {
         if (element) {
             typeWriterEffect(element, element.getAttribute("data-text"));
         }
     });
 
-    let canvas = document.getElementById("particle-canvas");
+    const canvas = document.getElementById("particle-canvas");
     if (canvas) {
-        let ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d");
         let particles = [];
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-
-        window.addEventListener("resize", function () {
+        function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             initParticles();
-        });
+        }
+
+        window.addEventListener("resize", resizeCanvas);
 
         class Particle {
             constructor(x, y) {
@@ -57,33 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.size = Math.random() * 1.5 + 0.5;
                 this.speedX = (Math.random() - 0.5) * 1.5;
                 this.speedY = (Math.random() - 0.5) * 1.5;
-                let colorOptions = ["#1A472A", "#A5A5A5", "#FF0000"];
-                let randomIndex = Math.random();
-                if (randomIndex < 0.75) {
-                    this.color = colorOptions[0];
-                } else if (randomIndex < 0.875) {
-                    this.color = colorOptions[1];
-                } else {
-                    this.color = colorOptions[2];
-                }
+                const colorOptions = ["#1A472A", "#A5A5A5", "#FF0000"];
+                const randomIndex = Math.random();
+                this.color = randomIndex < 0.75 ? colorOptions[0] : randomIndex < 0.875 ? colorOptions[1] : colorOptions[2];
             }
             update() {
-                if (this.x + this.size >= canvas.width) {
-                    this.x = canvas.width - this.size;
-                    this.speedX = -Math.abs(this.speedX);
-                } else if (this.x - this.size <= 0) {
-                    this.x = this.size;
-                    this.speedX = Math.abs(this.speedX);
+                if (this.x + this.size >= canvas.width || this.x - this.size <= 0) {
+                    this.speedX = -this.speedX;
                 }
-
-                if (this.y + this.size >= canvas.height) {
-                    this.y = canvas.height - this.size;
-                    this.speedY = -Math.abs(this.speedY);
-                } else if (this.y - this.size <= 0) {
-                    this.y = this.size;
-                    this.speedY = Math.abs(this.speedY);
+                if (this.y + this.size >= canvas.height || this.y - this.size <= 0) {
+                    this.speedY = -this.speedY;
                 }
-
                 this.x += this.speedX;
                 this.y += this.speedY;
             }
@@ -97,27 +78,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function initParticles() {
             particles = [];
-            let area = canvas.width * canvas.height;
-            let numParticles = Math.floor(area / 10000);
-            numParticles = Math.min(numParticles, 250);
-            numParticles = Math.max(numParticles, 50);
+            const area = canvas.width * canvas.height;
+            const numParticles = Math.max(Math.min(Math.floor(area / 10000), 250), 50);
 
             for (let i = 0; i < numParticles; i++) {
-                let x = Math.random() * canvas.width;
-                let y = Math.random() * canvas.height;
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
                 particles.push(new Particle(x, y));
             }
         }
 
         function connectParticles() {
-          let maxDistance = Math.max(canvas.width, canvas.height) * 0.10;
+            const maxDistance = Math.max(canvas.width, canvas.height) * 0.10;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < maxDistance) {
-                        let opacity = 1 - distance / maxDistance;
+                        const opacity = 1 - distance / maxDistance;
                         ctx.strokeStyle = `rgba(26, 71, 42, ${opacity})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
@@ -139,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
             requestAnimationFrame(animateParticles);
         }
 
-        initParticles();
+        resizeCanvas();
         animateParticles();
     }
 
@@ -156,11 +135,11 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("projects.json")
             .then(response => response.json())
             .then(savedProjects => {
-                let projectsGrid = document.querySelector(".projects-grid");
+                const projectsGrid = document.querySelector(".projects-grid");
                 if (!projectsGrid) return;
                 projectsGrid.innerHTML = "";
                 savedProjects.forEach(project => {
-                    let newProject = document.createElement("div");
+                    const newProject = document.createElement("div");
                     newProject.classList.add("project-card");
                     newProject.innerHTML = `
                         <h3>${project.title}</h3>

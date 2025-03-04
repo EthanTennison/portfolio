@@ -1,3 +1,10 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     background-color: #0D0D0D;
     color: #555555;
@@ -42,13 +49,6 @@ nav ul {
     margin: 0;
 }
 
-.menu-toggle {
-    display: none;
-    cursor: pointer;
-    font-size: 1.5em;
-    color: #A5A5A5;
-}
-
 nav a {
     color: #A5A5A5;
     text-decoration: none;
@@ -57,6 +57,13 @@ nav a {
 
 nav a:hover {
     color: #0b5c00;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #A5A5A5;
 }
 
 .main-container {
@@ -74,7 +81,7 @@ nav a:hover {
     object-fit: cover;
     border: 2px solid #1A472A;
     margin-right: 20px;
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 .about-container {
@@ -85,43 +92,17 @@ nav a:hover {
     gap: 20px;
 }
 
-.badge-base{
-    flex-shrink: 0;
-    margin-right: 20px;
+.about-box {
+    width: 100%;
 }
 
-.title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    margin-top: 50px;
-    width: 50%;
+.contact-box {
+    width: 30%; 
+    max-width: 300px; 
 }
 
-
-.content-frame {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #121212;
-    color: #A5A5A5;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px rgba(90, 143, 123, 0.3);
-    border: 2px solid #1A472A;
-    width: 80%;
-    max-width: 100%; 
-    text-align: center;
-}
-
-#projects {
-    margin-top: 30px;
-}
-
-.content-frame-body h1 {
-    margin-top: 0;
-    margin-bottom: 20px;
+.projects-box {
+    width: 70%;
 }
 
 .projects-grid {
@@ -130,7 +111,7 @@ nav a:hover {
     gap: 20px;
     padding: 20px;
     width: 80%;
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 .project-card {
@@ -141,7 +122,7 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 .project-card:hover {
@@ -158,6 +139,62 @@ nav a:hover {
     pointer-events: none;
 }
 
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.title-container .content-frame {
+    width: fit-content;
+    padding: 20px 40px;
+}
+
+.content-frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    color: #A5A5A5;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(90, 143, 123, 0.3);
+    border: 2px solid #1A472A;
+    width: 80%;
+    max-width: 100%;
+    text-align: center;
+}
+
+.content-frame.about-box {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main-container .content-frame {
+    width: 60%;
+    max-width: 600px;
+}
+
+.main-container .content-frame.contact-box {
+    width: 30%;
+    max-width: 300px;
+}
+
+#projects {
+    margin-top: 30px;
+}
+
+.content-frame-body h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
 .name-and-image-header {
     display: flex;
     align-items: center;
@@ -171,7 +208,6 @@ nav a:hover {
 .name-and-image-header h1 {
     margin: 0;
 }
-
 
 @media (max-width: 768px) {
     .about-container {
@@ -187,6 +223,7 @@ nav a:hover {
         height: 150px;
         margin-right: 0;
     }
+
     .name-and-image-header {
         flex-direction: column;
     }
@@ -197,13 +234,17 @@ nav a:hover {
 
     .content-frame, .content-frame-body {
         width: 100%;
-         max-width: none; 
+        max-width: none;
     }
 
-     header {
+    .content-frame.about-box {
+        width: 95%;
+        max-width: none;
+    }
+
+    header {
         flex-direction: column;
         text-align: center;
-
     }
 
     nav ul {
@@ -217,16 +258,18 @@ nav a:hover {
         width: 100%;
         text-align: center;
     }
-     .menu-toggle {
+
+    .menu-toggle {
         display: block;
         margin-bottom: 10px;
     }
-    .projects-grid{
+
+    .projects-grid {
         width: 100%;
-         max-width: none; 
-    }
-     .project-card {
-        max-width: none;  
+        max-width: none;
     }
 
+    .project-card {
+        max-width: none;
+    }
 }
