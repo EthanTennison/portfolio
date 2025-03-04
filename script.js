@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         function connectParticles() {
-            const maxDistance = Math.max(canvas.width, canvas.height) * 0.10;
+            const maxDistance = Math.max(canvas.width, canvas.height) * 0.07;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (distance < maxDistance) {
                         const opacity = 1 - distance / maxDistance;
                         ctx.strokeStyle = `rgba(26, 71, 42, ${opacity})`;
-                        ctx.lineWidth = 0.5; // Reduced line width
+                        ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -145,6 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         <h3>${project.title}</h3>
                         <p>${project.description}</p>
                     `;
+                    newProject.addEventListener('click', function() {
+                        newProject.classList.toggle('expanded');
+                    });
                     projectsGrid.appendChild(newProject);
                 });
             })
