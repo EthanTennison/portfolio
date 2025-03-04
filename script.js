@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (distance < maxDistance) {
                         const opacity = 1 - distance / maxDistance;
                         ctx.strokeStyle = `rgba(26, 71, 42, ${opacity})`;
-                        ctx.lineWidth = 1;
+                        ctx.lineWidth = 0.5; // Reduced line width
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
