@@ -144,8 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     newProject.innerHTML = `
                         <h3>${project.title}</h3>
                         <p>${project.description}</p>
+                        <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link">More Info</a> 
                     `;
-                    newProject.addEventListener('click', function() {
+                    newProject.addEventListener('click', function(event) {
+                        if (event.target.closest('.project-link')) {
+                            return; 
+                        }
                         newProject.classList.toggle('expanded');
                     });
                     projectsGrid.appendChild(newProject);
