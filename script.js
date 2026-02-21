@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function loadProjects() {
-        fetch("projects.json")
+        fetch("experience.json")
             .then(response => response.json())
             .then(savedProjects => {
                 const projectsGrid = document.querySelector(".projects-grid");
